@@ -48,11 +48,9 @@ class Photo
 
     public function getID()
     {
-        if(count($this->response)> 1)
-        {
+        if (count($this->response)> 1) {
             return $this->response[0]->id;
-        }
-        else{
+        } else {
             return $this->response->id;
         }
     }
@@ -69,11 +67,9 @@ class Photo
 
     public function getURL($width = 1600, $height = 900)
     {
-        if(count($this->response)> 1)
-        {
+        if (count($this->response)> 1) {
             return $this->image_url. $this->response[0]->id. '/'. $width. 'x'. $height;
-        }
-        else{
+        } else {
             return $this->image_url. $this->response->id. '/'. $width. 'x'. $height;
         }
     }
