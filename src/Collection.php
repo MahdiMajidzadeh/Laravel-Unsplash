@@ -1,21 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Majidzadeh
- * Date: 1/4/2018
- * Time: 11:17
- */
 
 namespace MahdiMajidzadeh\LaravelUnsplash;
-
 
 use GuzzleHttp\Client;
 
 class Collection
 {
     private $url = 'https://api.unsplash.com/';
-    private $image_url = 'https://source.unsplash.com/';
-    private $responce;
+    private $response;
 
     public function collections($params = [])
     {
@@ -55,12 +47,12 @@ class Collection
 
     public function getArray()
     {
-        return (array) $this->responce;
+        return (array) $this->response;
     }
 
     public function get()
     {
-        return $this->responce;
+        return $this->response;
     }
 
     private function execute($url, $params)
@@ -76,6 +68,6 @@ class Collection
             'form_params' => $params
         ]);
         $body = (string) $response->getBody();
-        $this->responce = json_decode($body);
+        $this->response = json_decode($body);
     }
 }

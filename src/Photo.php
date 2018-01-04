@@ -8,7 +8,7 @@ class Photo
 {
     private $url = 'https://api.unsplash.com/';
     private $image_url = 'https://source.unsplash.com/';
-    private $responce;
+    private $response;
 
     public function photos($params = [])
     {
@@ -31,7 +31,7 @@ class Photo
     public function download($id)
     {
         $this->execute('photos/'. $id. '/download', []);
-        return $this->responce->url;
+        return $this->response->url;
     }
 
     public function curated($params = [])
@@ -48,33 +48,33 @@ class Photo
 
     public function getID()
     {
-        if(count($this->responce)> 1)
+        if(count($this->response)> 1)
         {
-            return $this->responce[0]->id;
+            return $this->response[0]->id;
         }
         else{
-            return $this->responce->id;
+            return $this->response->id;
         }
     }
 
     public function getArray()
     {
-        return (array) $this->responce;
+        return (array) $this->response;
     }
 
     public function get()
     {
-        return $this->responce;
+        return $this->response;
     }
 
     public function getURL($width = 1600, $height = 900)
     {
-        if(count($this->responce)> 1)
+        if(count($this->response)> 1)
         {
-            return $this->image_url. $this->responce[0]->id. '/'. $width. 'x'. $height;
+            return $this->image_url. $this->response[0]->id. '/'. $width. 'x'. $height;
         }
         else{
-            return $this->image_url. $this->responce->id. '/'. $width. 'x'. $height;
+            return $this->image_url. $this->response->id. '/'. $width. 'x'. $height;
         }
     }
 
@@ -91,6 +91,6 @@ class Photo
             'form_params' => $params
         ]);
         $body = (string) $response->getBody();
-        $this->responce = json_decode($body);
+        $this->response = json_decode($body);
     }
 }

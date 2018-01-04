@@ -7,8 +7,7 @@ use GuzzleHttp\Client;
 class Search
 {
     private $url = 'https://api.unsplash.com/';
-    private $image_url = 'https://source.unsplash.com/';
-    private $responce;
+    private $response;
 
     public function photo($query, $params = [])
     {
@@ -33,12 +32,12 @@ class Search
 
     public function getArray()
     {
-        return (array) $this->responce;
+        return (array) $this->response;
     }
 
     public function get()
     {
-        return $this->responce;
+        return $this->response;
     }
 
     private function execute($url, $params)
@@ -54,6 +53,6 @@ class Search
             'form_params' => $params
         ]);
         $body = (string) $response->getBody();
-        $this->responce = json_decode($body);
+        $this->response = json_decode($body);
     }
 }
