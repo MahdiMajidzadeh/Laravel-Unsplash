@@ -1,25 +1,39 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Majidzadeh
- * Date: 1/3/2018
- * Time: 17:02
- */
 
 namespace MahdiMajidzadeh\LaravelUnsplash;
-
 
 use GuzzleHttp\Client;
 
 class Photo
 {
     private $url = 'https://api.unsplash.com/';
+    private $image_url = 'https://source.unsplash.com/';
     private $responce;
-    private $status;
 
-    public function random()
+    public function random($param = [])
     {
-        return $this->execute('photos/random', []);
+        $this->execute('photos/random', $param);
+        return $this;
+    }
+
+    public function getID()
+    {
+        return $this->responce->id;
+    }
+
+    public function getArray()
+    {
+        return (array) $this->responce;
+    }
+
+    public function get()
+    {
+        return $this->responce;
+    }
+
+    public function getURL($width = 1600, $height = 900)
+    {
+        return $this->image_url. $this->responce->id. '/'. $width. 'x'. $height;
     }
 
     private function execute($url, $params)
@@ -35,7 +49,6 @@ class Photo
             'form_params' => $params
         ]);
         $body = (string) $response->getBody();
-        $result = json_decode($body, true);
-        return $result;
+        $this->responce = json_decode($body);
     }
 }
