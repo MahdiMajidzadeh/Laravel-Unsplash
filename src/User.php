@@ -65,7 +65,7 @@ class User
                 'Accept-Version' => 'v1',
                 'Authorization'  => 'Client-ID '. config('unsplash.ApplicationID')
             ],
-            'form_params' => $params
+            'query' => $params
         ]);
         $body = (string) $response->getBody();
         $this->response = json_decode($body);
