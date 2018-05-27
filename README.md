@@ -13,7 +13,7 @@ $ composer require mahdimajidzadeh/laravel-unsplash
 If you do not run Laravel 5.5 (or higher), then add the service provider in config/app.php:
 
 ```
-MahdiMajidzadeh\LaravelUnsplash\LaravelUnsplashServiceProvider:class
+MahdiMajidzadeh\LaravelUnsplash\LaravelUnsplashServiceProvider::class
 ```
 
 If you do run the package on Laravel 5.5+, package auto-discovery takes care of the magic of adding the service provider.
