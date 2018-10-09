@@ -62,12 +62,13 @@ class Photo
 
     public function get()
     {
-        return $this->response;
+        return $this->response;;
     }
 
     public function getURL($width = 1600, $height = 900)
     {
-        if (count($this->response)> 1) {
+        $count = is_array($this->response) ? count($this->response) : 1;
+        if ($count > 1) {
             return $this->image_url. $this->response[0]->id. '/'. $width. 'x'. $height;
         } else {
             return $this->image_url. $this->response->id. '/'. $width. 'x'. $height;
