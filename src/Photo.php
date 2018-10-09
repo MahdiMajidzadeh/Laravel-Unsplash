@@ -62,7 +62,7 @@ class Photo
 
     public function get()
     {
-        return $this->response;;
+        return $this->response;
     }
 
     public function getURL($width = 1600, $height = 900)
