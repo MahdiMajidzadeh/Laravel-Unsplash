@@ -2,13 +2,9 @@
 
 namespace MahdiMajidzadeh\LaravelUnsplash;
 
-use GuzzleHttp\Client;
-
-class Photo
+class Photo extends Unsplush
 {
-    private $url = 'https://api.unsplash.com/';
     private $image_url = 'https://source.unsplash.com/';
-    private $response;
 
     public function photos($params = [])
     {
@@ -55,16 +51,6 @@ class Photo
         }
     }
 
-    public function getArray()
-    {
-        return (array) $this->response;
-    }
-
-    public function get()
-    {
-        return $this->response;
-    }
-
     public function getURL($width = 1600, $height = 900)
     {
         $count = is_array($this->response) ? count($this->response) : 1;
@@ -73,21 +59,5 @@ class Photo
         } else {
             return $this->image_url. $this->response->id. '/'. $width. 'x'. $height;
         }
-    }
-
-    private function execute($url, $params)
-    {
-        $client = new Client([
-            'base_uri' => $this->url,
-        ]);
-        $response = $client->request('GET', $url, [
-            'headers' => [
-                'Accept-Version' => 'v1',
-                'Authorization'  => 'Client-ID '. config('unsplash.ApplicationID')
-            ],
-            'query' => $params
-        ]);
-        $body = (string) $response->getBody();
-        $this->response = json_decode($body);
     }
 }
