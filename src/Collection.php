@@ -2,7 +2,6 @@
 
 namespace MahdiMajidzadeh\LaravelUnsplash;
 
-
 class Collection
 {
     public function collections($params = [])

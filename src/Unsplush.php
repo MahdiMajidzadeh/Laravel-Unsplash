@@ -4,8 +4,8 @@ namespace MahdiMajidzadeh\LaravelUnsplash;
 
 use GuzzleHttp\Client;
 
-class Unsplush{
-
+class Unsplush
+{
     private $url = 'https://api.unsplash.com/';
     private $response;
 
